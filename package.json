@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"private": true,
 	"scripts": {
-		"build": "esbuild src/entry.ts --bundle --outfile=api/index.js --platform=neutral --format=esm --external:node:*"
+		"build": "esbuild src/entry.ts --bundle --outfile=api/index.js --platform=neutral --format=esm --external:node:* --banner:js=\"export const runtime = 'edge';\""
 	},
 	"dependencies": {
 		"hono": "^4.12.2"
