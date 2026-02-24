@@ -2,10 +2,8 @@
 	"github": {
 		"enabled": false
 	},
-	"framework": null,
-	"buildCommand": "bun run build",
 	"rewrites": [
-		{ "source": "/v1/(.*)", "destination": "/api" },
-		{ "source": "/(.*)", "destination": "/api" }
+		{ "source": "/v1/(.*)", "destination": "/" },
+		{ "source": "/(.*)", "destination": "/" }
 	]
 }

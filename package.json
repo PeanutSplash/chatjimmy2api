@@ -2,15 +2,12 @@
 	"name": "chatjimmy2api",
 	"version": "1.0.0",
 	"private": true,
-	"scripts": {
-		"build": "esbuild src/entry.ts --bundle --outfile=api/index.js --platform=neutral --format=esm --external:node:* --banner:js=\"export const runtime = 'edge';\""
-	},
+	"type": "module",
 	"dependencies": {
 		"hono": "^4.12.2"
 	},
 	"devDependencies": {
 		"@types/node": "^25.3.0",
-		"esbuild": "^0.27.3",
 		"typescript": "^5.9.3"
 	}
 }
