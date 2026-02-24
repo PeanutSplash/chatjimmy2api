@@ -3,13 +3,19 @@ import { cors } from 'hono/cors'
 import { bearerAuth } from 'hono/bearer-auth'
 import { streamSSE } from 'hono/streaming'
 
-const app = new Hono().basePath('/v1')
+const app = new Hono()
+
+// Root health check
+app.get('/', (c) => c.json({ status: 'chatjimmy2api is running' }))
+
+// v1 routes
+const v1 = new Hono()
 
 // CORS
-app.use('*', cors())
+v1.use('*', cors())
 
 // Auth
-app.use('*', async (c, next) => {
+v1.use('*', async (c, next) => {
 	const apiKey = process.env.API_KEY
 	if (!apiKey) return next()
 	const middleware = bearerAuth({ token: apiKey })
@@ -80,7 +86,7 @@ function buildUpstreamBody(body: CompletionRequest): ChatJimmyRequest {
 // ---- Routes ----
 
 // GET /v1/models
-app.get('/models', (c) => {
+v1.get('/models', (c) => {
 	return c.json({
 		object: 'list',
 		data: [
@@ -95,7 +101,7 @@ app.get('/models', (c) => {
 })
 
 // POST /v1/chat/completions
-app.post('/chat/completions', async (c) => {
+v1.post('/chat/completions', async (c) => {
 	const body = await c.req.json<CompletionRequest>()
 	const stream = body.stream ?? false
 	const chatId = generateId()
@@ -239,5 +245,7 @@ app.post('/chat/completions', async (c) => {
 		},
 	})
 })
+
+app.route('/v1', v1)
 
 export default app
