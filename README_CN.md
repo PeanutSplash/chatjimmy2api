@@ -4,6 +4,11 @@
 
 将 [ChatJimmy](https://chatjimmy.ai) 转换为 OpenAI 兼容 API，一键部署到 Vercel Edge。
 
+## 部署
+
+1. Fork 本仓库
+2. 点击下方按钮将你的 Fork 部署到 Vercel
+
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/peanutsplash/chatjimmy2api&env=API_KEY&envDescription=Optional%20Bearer%20token%20for%20API%20authentication)
 
 ## 功能
